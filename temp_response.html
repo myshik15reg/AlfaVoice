@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru" class="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<script>
+			// Error boundary - ловим и отображаем ошибки загрузки
+			window.onerror = function(msg, url, line, col, error) {
+				console.error('Global error:', msg, error);
+				const errorDiv = document.createElement('div');
+				errorDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#ff4444;color:white;padding:20px;z-index:99999;font-family:monospace;font-size:14px;box-shadow:0 4px 6px rgba(0,0,0,0.3);';
+				errorDiv.innerHTML = `
+					<strong>❌ Application Error:</strong><br/>
+					Message: ${msg}<br/>
+					Location: ${url}:${line}:${col}<br/>
+					${error ? 'Stack: ' + error.stack : ''}
+				`;
+				document.body.appendChild(errorDiv);
+				return false;
+			};
+			
+			// Ловим unhandled promise rejections
+			window.addEventListener('unhandledrejection', function(event) {
+				console.error('Unhandled promise rejection:', event.reason);
+				const errorDiv = document.createElement('div');
+				errorDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#ff8800;color:white;padding:20px;z-index:99999;font-family:monospace;font-size:14px;box-shadow:0 4px 6px rgba(0,0,0,0.3);';
+				errorDiv.innerHTML = `
+					<strong>⚠️ Unhandled Promise Rejection:</strong><br/>
+					${event.reason}
+				`;
+				document.body.appendChild(errorDiv);
+			});
+		</script>
+		<div style="display: contents">
+			<script>
+				{
+					__sveltekit_dev = {
+						base: new URL(".", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("./app/immutable/entry/start.BYz5ta1R.js"),
+						import("./app/immutable/entry/app.BBSL2H7N.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
