@@ -1,0 +1,7 @@
+{
+  "name": "Copy of AlfaVoice",
+  "description": "A corporate AI writing assistant and productivity platform for Alfa-Leasing, featuring tone-of-voice management, snippet libraries, and style guides.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

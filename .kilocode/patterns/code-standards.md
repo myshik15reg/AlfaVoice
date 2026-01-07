@@ -5,9 +5,24 @@
 ## Core Philosophies
 
 ### 100% Quality & Zero Tolerance
-- **100% Test Coverage:** Нет тестов — нет кода.
-- **Strict Linting:** 0 errors, 0 warnings.
-- **No Technical Debt:** TODO разрешены только с ссылкой на issue tracker. Если тикета нет — исправляй сейчас.
+- **100% Test Coverage:** Нет тестов — нет кода. Lines/Branches/Functions = 100%.
+- **Strict Linting:** 0 errors, 0 warnings. НИКОГДА не отключай lint rules (`eslint-disable`, `@ts-ignore`).
+- **No Technical Debt:** TODO разрешены только с ссылкой на issue tracker (`// TODO(#123)`). Если тикета нет — исправляй сейчас.
+
+### Test Naming Convention
+**Формат:** `should [expected behavior] when [condition]`
+
+**Примеры:**
+```javascript
+✅ test('should return empty array when input is null')
+✅ test('should throw error when user not found')
+❌ test('test1') // ПЛОХО
+❌ test('it works') // ПЛОХО
+```
+
+### Changesets & Markers
+- **Changesets:** При изменении пакетов в монорепо выполняй `npx changeset add`
+- **Markers:** Добавляй `// kilocode_change: [YYYY-MM-DD] Description` при изменении кода
 
 ### KISS (Keep It Simple, Stupid)
 Самое простое решение почти всегда лучшее. Избегай ненужной сложности.

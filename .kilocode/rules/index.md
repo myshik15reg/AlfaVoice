@@ -3,9 +3,10 @@
 Правила и руководства для AI-агентов в рамках методологии AlfaFlow.
 
 ## Core Files
-- [`project-rules.md`](project-rules.md) — Основные принципы, структура проекта, рабочий процесс AlfaFlow
-- [`roles.md`](roles.md) — Ролевые модели: Architect, Code, Reviewer, Ask - полные определения с checklist
-- [`safety.md`](safety.md) — Правила безопасности для работы с Memory Bank и протоколами
+- [`AGENTS.md`](../../AGENTS.md) — **MAIN MANIFESTO:** Absolute rules, principles, and strategy.
+- [`roles.md`](roles.md) — Role definitions (Architect, Code, Reviewer)
+- [`ui-ux-devops-roles.md`](ui-ux-devops-roles.md) — Specialized Roles (UI/UX, DevOps)
+- [`safety.md`](safety.md) — Safety protocols and Memory Bank protection
 
 ## Специализированные Rules (NEW)
 - [`tool-usage-guide.md`](tool-usage-guide.md) — **⚠️ КРИТИЧЕСКИ ВАЖНО:** Правильное использование инструментов, apply_diff, new_task vs switch_mode

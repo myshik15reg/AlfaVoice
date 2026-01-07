@@ -1,1 +1,0 @@
-import{c as a,v as r}from"./ssr.js";import{I as d}from"./file-text.js";const p=a((t,n,m,e)=>{const o=[["path",{d:"m18 16 4-4-4-4"}],["path",{d:"m6 8-4 4 4 4"}],["path",{d:"m14.5 4-5 16"}]];return`${r(d,"Icon").$$render(t,Object.assign({},{name:"code-xml"},n,{iconNode:o}),{},{default:()=>`${e.default?e.default({}):""}`})}`});export{p as C};

@@ -1,0 +1,62 @@
+lib\components\Sidebar.svelte:46:    <Icon name="graphic_eq" filled={false} className="text-primary text-3xl font-bold flex-shrink-0" />
+lib\components\Sidebar.svelte:76:          className={`material-symbols-outlined flex-shrink-0 transition-all duration-300 text-2xl ${active
+lib\components\Sidebar.svelte:111:          className={`material-symbols-outlined flex-shrink-0 transition-all duration-300 text-2xl ${active
+routes\+page.svelte:127:				<Icon name="local_fire_department" className="text-primary mr-2 text-lg" />
+routes\+page.svelte:135:				<Icon name="edit_note" className="text-primary mr-2 text-lg" />
+routes\+page.svelte:143:				<Icon name="speed" className="text-primary mr-2 text-lg" />
+routes\+page.svelte:198:						className="text-primary dark:text-gray-300 text-3xl group-hover:text-white"
+routes\+page.svelte:207:					className="ml-auto text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors"
+routes\+page.svelte:222:						className="text-primary dark:text-gray-300 text-3xl group-hover:text-white"
+routes\+page.svelte:233:					className="ml-auto text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors"
+routes\+page.svelte:260:									<Icon name="sync" className="animate-spin text-lg" />
+routes\+page.svelte:281:									<Icon name="content_copy" className="text-[20px]" />
+routes\+page.svelte:289:								<Icon name="delete" className="text-[20px]" />
+routes\+page.svelte:303:								className={`text-2xl ${playingId === item.id ? '' : 'ml-0.5 mt-0.5'}`}
+routes\dictionary\+page.svelte:116:				<Icon name="download" className="text-lg mr-2" />
+routes\dictionary\+page.svelte:123:				<Icon name="add" className="text-xl mr-2" />
+routes\dictionary\+page.svelte:135:				className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+routes\dictionary\+page.svelte:149:					<Icon name="close" className="text-xl block" />
+routes\dictionary\+page.svelte:160:				<Icon name="sort_by_alpha" className="text-lg mr-2 text-gray-500" />
+routes\dictionary\+page.svelte:173:						className={`text-lg mr-2 ${selectedCategory ? 'text-primary' : 'text-gray-500'}`}
+routes\dictionary\+page.svelte:178:						className={`text-xl ml-1 transition-transform ${isCategoryOpen ? 'rotate-180' : ''}`}
+routes\dictionary\+page.svelte:198:									<Icon name="check" className="text-lg" />
+routes\dictionary\+page.svelte:214:										<Icon name="check" className="text-lg" />
+routes\dictionary\+page.svelte:301:									<Icon name="edit" className="text-xl" />
+routes\dictionary\+page.svelte:308:									<Icon name="delete" className="text-xl" />
+routes\dictionary\+page.svelte:326:				<Icon name="search_off" className="text-5xl text-gray-300 dark:text-gray-600 mb-4" />
+routes\guide\+page.svelte:20:					<Icon name="download" className="text-lg mr-2" />
+routes\guide\+page.svelte:26:					<Icon name="add" className="text-lg mr-2" />
+routes\guide\+page.svelte:85:						<Icon name="record_voice_over" className="text-primary text-3xl mr-3" />
+routes\guide\+page.svelte:99:								<Icon name="check_circle" className="mr-2 text-xl" />
+routes\guide\+page.svelte:117:								<Icon name="cancel" className="mr-2 text-xl" />
+routes\guide\+page.svelte:139:						<Icon name="format_shapes" className="text-primary text-3xl mr-3" />
+routes\notes\+page.svelte:90:						className="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors"
+routes\notes\+page.svelte:105:						<Icon name="close" className="text-lg block" />
+routes\notes\+page.svelte:113:				<Icon name="add" className="mr-2 text-xl" />
+routes\notes\+page.svelte:175:									<Icon name="delete" className="text-lg" />
+routes\notes\+page.svelte:182:									<Icon name="check" className="text-lg" />
+routes\notes\+page.svelte:189:									<Icon name="close" className="text-lg" />
+routes\notes\+page.svelte:213:									className={`text-xl ${note.isFavorite ? 'filled' : ''}`}
+routes\notes\+page.svelte:236:									<Icon name="edit" className="text-[18px]" />
+routes\notes\+page.svelte:242:									<Icon name="delete" className="text-[18px]" />
+routes\notes\+page.svelte:257:					<Icon name="add" className="text-gray-400 group-hover:text-white text-2xl" />
+routes\notes\+page.svelte:266:			<Icon name="folder_open" className="text-4xl text-gray-300 mb-2" />
+routes\snippets\+page.svelte:113:			<Icon name="add" className="text-xl" />
+routes\snippets\+page.svelte:124:				className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+routes\snippets\+page.svelte:138:					<Icon name="close" className="text-lg" />
+routes\snippets\+page.svelte:150:						<Icon name="filter_list" className="text-gray-400 text-xl" />
+routes\snippets\+page.svelte:155:						className={`text-gray-400 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+routes\snippets\+page.svelte:175:									<Icon name="check" className="text-lg flex-shrink-0" />
+routes\snippets\+page.svelte:193:				<Icon name="add" className="text-gray-400 group-hover:text-primary transition-colors text-2xl" />
+routes\snippets\+page.svelte:242:								<Icon name="delete" className="text-lg" />
+routes\snippets\+page.svelte:250:								<Icon name="check" className="text-lg" />
+routes\snippets\+page.svelte:258:								<Icon name="close" className="text-lg" />
+routes\snippets\+page.svelte:281:							<Icon name="star" className="text-xl" />
+routes\snippets\+page.svelte:305:								<Icon name="content_copy" className="text-lg" />
+routes\snippets\+page.svelte:315:								<Icon name="edit" className="text-lg" />
+routes\snippets\+page.svelte:331:				<Icon name="auto_fix_high" className="text-2xl" />
+routes\support\+page.svelte:42:					<Icon name="chat" className="text-2xl" />
+routes\support\+page.svelte:54:					<Icon name="arrow_forward" className="text-base ml-1" />
+routes\support\+page.svelte:64:					<Icon name="mail" className="text-2xl" />
+routes\support\+page.svelte:74:					<Icon name="arrow_forward" className="text-base ml-1" />
+routes\support\+page.svelte:101:								className={`text-gray-400 group-hover:text-primary transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`}

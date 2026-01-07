@@ -11,11 +11,25 @@
 -   **Optimization**: AVX-512, AMX (Intel MKL/OneDNN)
 
 ## Frontend (Client)
--   **Framework**: Tauri 1.5+ (Rust core)
--   **UI Library**: SvelteKit (Svelte 4)
--   **Styling**: Tailwind CSS
--   **State Management**: Svelte Stores
+
+### Legacy Client (React)
+-   **Framework**: React 18+
+-   **Location**: `client/`
+-   **Status**: Legacy, планируется миграция в SvelteKit
+
+### New Client (SvelteKit)
+-   **Framework**: Tauri v2.2+ (Rust core)
+-   **UI Library**: SvelteKit 2.49+ (Svelte 5.45+)
+-   **Styling**: Tailwind CSS v4+ (@tailwindcss/vite)
+-   **Location**: `client-svelte/`
+-   **Adapter**: @sveltejs/adapter-static (для Tauri)
+-   **Icons**: Material Symbols Outlined
+-   **State Management**: Svelte Stores (readable/writable)
+-   **Tauri Plugins**:
+    -   `@tauri-apps/plugin-global-shortcut` - Глобальные хоткеи
+    -   `@tauri-apps/api` - Window controls, notifications
 -   **Local DB**: SQLite (rusqlite + sqlcipher)
+-   **Testing**: Vitest, Playwright, Testing Library
 
 ## Models
 -   **ASR**: Whisper `large-v3` (quantized Q5_K_M)

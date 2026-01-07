@@ -14,15 +14,27 @@ graph TD
 
 ## Компоненты
 
-### 1. Client (Tauri + Svelte)
--   **Core**: Tauri (Rust) для системных взаимодействий (хоткеи, трей, аудио).
+### 1. Client (Tauri v2 + SvelteKit)
+-   **Core**: Tauri v2 (Rust) для системных взаимодействий (хоткеи, трей, аудио, window controls).
 -   **UI**: SvelteKit (SPA) для интерфейса.
+-   **State Management**: Svelte stores (readable/writable) для реактивного состояния.
+    -   `userStore`: Пользовательские данные (readable, статические из db.ts)
+    -   `activitiesStore`: История активности (writable)
+    -   `newsStore`: Новости и уведомления (writable)
+    -   `snippetsStore`: Сниппеты кода с CRUD операциями (writable)
+    -   `notesStore`: Заметки с CRUD операциями (writable)
+    -   `dictionaryStore`: Словарь терминов с CRUD операциями (writable)
+    -   `settingsStore`: Настройки приложения (writable, persist в localStorage)
+    -   `audioStore`: Состояние записи аудио (writable)
+    -   `darkModeStore`: Темная/светлая тема (writable)
+    -   `isSidebarCollapsedStore`: Состояние сайдбара (writable)
 -   **Функции**:
     -   Захват аудио (Web Audio API / Native).
-    -   Глобальные хоткеи (Windows Hooks).
+    -   Глобальные хоткеи (Tauri plugin-global-shortcut, Ctrl + Win).
+    -   Window controls (minimize/maximize/close через Tauri API).
     -   Эмуляция ввода текста (SendInput).
-    -   Локальное хранилище (SQLite + SQLCipher).
-    -   Синхронизация с сервером.
+    -   Локальное хранилище (localStorage для настроек, SQLite + SQLCipher для данных).
+    -   Синхронизация с сервером (mockServer API с 80% success rate).
 
 ### 2. Server (Rust)
 -   **Framework**: Axum (HTTP/WebSocket).

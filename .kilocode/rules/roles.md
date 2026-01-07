@@ -23,6 +23,7 @@
 **КРИТИЧЕСКИ ВАЖНО - Делегирование:**
 - **ЗАПРЕЩЕНО** самому писать код или выполнять реализацию
 - После создания плана — создай НОВУЮ ПОДЗАДАЧУ (`new_task`) для Code Mode
+- Используй паттерн **Context Handoff** при делегировании (см. `.kilocode/patterns/orchestration/context-handoff.md`)
 - **НЕ ПЕРЕКЛЮЧАЙСЯ** на другой режим в текущей сессии
 - Один таск = один режим Architect
 
@@ -59,6 +60,9 @@
 **Роль:** Code Reviewer / QA Specialist
 **Этап:** Review (после реализации)
 **Recommended Model Type:** High Reasoning (например, Claude 3.5 Sonnet / o1)
+
+**Dual Analysis Pattern:**
+Этот режим может выступать в роли **Critic** в паре с **Generator** (например, Code Mode) для улучшения качества решений (см. `.kilocode/patterns/analysis/dual-analysis.md`).
 
 **Обязанности:**
 - Code Review - проверка качества кода

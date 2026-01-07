@@ -1,76 +1,20 @@
-# AlfaVoice Client
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-Клиентское приложение AlfaVoice на базе SvelteKit + Tauri.
+# Run and deploy your AI Studio app
 
-## Структура проекта
+This contains everything you need to run your app locally.
 
-```
-client/
-├── src/
-│   ├── app.html              # Точка входа HTML
-│   ├── app.d.ts              # TypeScript типы
-│   ├── lib/
-│   │   ├── audio.ts          # Модуль захвата аудио
-│   │   └── socket.ts        # Модуль WebSocket
-│   └── routes/
-│       ├── +layout.svelte    # Глобальный лейаут
-│       └── +page.svelte      # Главная страница
-├── src-tauri/                # Tauri backend
-│   ├── src/
-│   │   ├── main.rs          # Точка входа
-│   │   ├── lib.rs           # Библиотечный модуль
-│   │   ├── hotkey.rs        # Модуль горячих клавиш
-│   │   └── audio.rs         # Модуль аудио устройств
-│   ├── Cargo.toml           # Rust зависимости
-│   └── tauri.conf.json      # Конфигурация Tauri
-└── package.json             # Node.js зависимости
-```
+View your app in AI Studio: https://ai.studio/apps/drive/1g2FD08xuKVcpSw_87LZdefEI4j2liRth
 
-## Установка
+## Run Locally
 
-```bash
-npm install
-```
+**Prerequisites:**  Node.js
 
-## Запуск в режиме разработки
 
-```bash
-npm run dev
-```
-
-## Сборка приложения
-
-```bash
-npm run build
-```
-
-## Запуск Tauri приложения
-
-```bash
-npm run tauri:dev
-```
-
-## Сборка Tauri приложения
-
-```bash
-npm run tauri:build
-```
-
-## Переменные окружения
-
-Создайте файл `.env` в корне проекта:
-
-```env
-VITE_WS_URL=ws://localhost:8080/ws
-VITE_API_URL=http://localhost:8080
-NODE_ENV=development
-```
-
-## Возможности
-
-- 🎤 Запись аудио с микрофона
-- 📊 Визуализация уровня громкости
-- 🔌 WebSocket соединение с сервером
-- ⌨️ Глобальные горячие клавиши (Ctrl+Win)
-- 🌙 Темная/светлая тема
-- 📝 Отображение транскрипции в реальном времени
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

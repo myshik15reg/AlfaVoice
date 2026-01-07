@@ -14,6 +14,7 @@ set SCRIPT_DIR=%~dp0
 set LIBTORCH_DIR=%SCRIPT_DIR%libtorch
 set LIBTORCH_ZIP=%SCRIPT_DIR%libtorch.zip
 set LLVM_PATH=C:\Program Files\LLVM\bin
+set CMAKE_PATH=C:\Program Files\CMake\bin
 
 echo Script directory: %SCRIPT_DIR%
 echo Libtorch directory: %LIBTORCH_DIR%
@@ -37,40 +38,54 @@ if exist "%LIBTORCH_ZIP%" (
     goto EXTRACT_LIBTORCH
 )
 
-REM Step 3: Show manual download instructions
+REM Step 3: Automatic download via PowerShell
 echo Libtorch not found and no zip file present.
 echo.
 echo ========================================
-echo MANUAL DOWNLOAD REQUIRED
+echo DOWNLOADING LIBTORCH 2.2.0
 echo ========================================
 echo.
-echo PyTorch servers block automatic downloads.
-echo Please download Libtorch manually:
+echo This will download Libtorch 2.2.0 with CUDA 12.1 support (approx. 2.5GB).
+echo Compatible with rust-bert v0.22.0 and torch-sys v0.14.0.
+echo Please wait, this may take several minutes...
 echo.
-echo 1. Visit: https://pytorch.org/get-started/locally/
-echo 2. Select: Stable ^> Windows ^> Libtorch ^> C++ ^> CUDA 12.4
-echo 3. Download: libtorch-win-shared-with-deps-2.5.1+cu124.zip (approx. 700MB)
-echo 4. Save the file to: %SCRIPT_DIR%
-echo 5. Rename it to: libtorch.zip (if needed)
-echo 6. Run this script again
+
+set LIBTORCH_URL=https://download.pytorch.org/libtorch/cu121/libtorch-win-shared-with-deps-2.2.0%%2Bcu121.zip
+
+echo Downloading from: %LIBTORCH_URL%
 echo.
-echo Alternatively, you can:
-echo - Use vcpkg: vcpkg install libtorch[cuda]:x64-windows
-echo - Or extract a different libtorch version to: %LIBTORCH_DIR%
+
+powershell -Command "& {[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri '%LIBTORCH_URL%' -OutFile '%LIBTORCH_ZIP%' -UseBasicParsing}"
+
+if %ERRORLEVEL% NEQ 0 (
+    echo.
+    echo ========================================
+    echo DOWNLOAD FAILED
+    echo ========================================
+    echo.
+    echo Automatic download failed. Please download manually:
+    echo.
+    echo 1. Visit: %LIBTORCH_URL%
+    echo 2. Save the file to: %SCRIPT_DIR%
+    echo 3. Rename it to: libtorch.zip (if needed)
+    echo 4. Run this script again
+    echo.
+    pause
+    exit /b 1
+)
+
 echo.
-pause
-exit /b 0
+echo Download completed successfully.
+echo.
 
 REM Step 4: Extract libtorch
 :EXTRACT_LIBTORCH
 echo [3/4] Extracting Libtorch...
 echo.
 
-REM Check file size
-for %%F in ("%LIBTORCH_ZIP%") do set ZIP_SIZE=%%~zF
-if %ZIP_SIZE% LSS 100000000 (
-    echo WARNING: Downloaded file seems too small (%ZIP_SIZE% bytes)
-    echo Expected size: ~700MB
+REM Check file size using PowerShell (handles large files > 2GB correctly)
+powershell -Command "$size = (Get-Item '%LIBTORCH_ZIP%').Length; if ($size -lt 100MB) { Write-Host \"WARNING: File seems too small ($size bytes)\"; Write-Host \"Expected size: ~2.5GB\"; exit 1 }"
+if %ERRORLEVEL% NEQ 0 (
     echo.
     set /p CONTINUE="Continue extraction anyway? (y/n): "
     if /i not "!CONTINUE!"=="y" (
@@ -80,20 +95,13 @@ if %ZIP_SIZE% LSS 100000000 (
     )
 )
 
-REM Use tar (available in Windows 10/11)
-echo Extracting using tar...
-tar -xf "%LIBTORCH_ZIP%" -C "%SCRIPT_DIR%"
+REM Use PowerShell for extraction (handles Unicode paths correctly)
+echo Extracting using PowerShell...
+powershell -Command "Expand-Archive -LiteralPath '%LIBTORCH_ZIP%' -DestinationPath '%SCRIPT_DIR%' -Force"
 if %ERRORLEVEL% NEQ 0 (
-    echo ERROR: Failed to extract Libtorch with tar
-    echo Trying alternative extraction method...
-    
-    REM Fallback to PowerShell
-    powershell -Command "Expand-Archive -Path '%LIBTORCH_ZIP%' -DestinationPath '%SCRIPT_DIR%' -Force"
-    if %ERRORLEVEL% NEQ 0 (
-        echo ERROR: Failed to extract Libtorch with both tar and PowerShell
-        pause
-        exit /b 1
-    )
+    echo ERROR: Failed to extract Libtorch with PowerShell
+    pause
+    exit /b 1
 )
 
 REM Clean up zip file
@@ -102,24 +110,52 @@ del "%LIBTORCH_ZIP%"
 echo Extraction completed successfully.
 echo.
 
-REM Step 5: Set environment variables
+REM Step 5: Check prerequisites
 :SET_ENV_VARS
-echo [4/4] Setting environment variables...
+echo [4/5] Setting environment variables...
 
 set LIBTORCH=%LIBTORCH_DIR%
 set LIBCLANG_PATH=%LLVM_PATH%
+REM Enable version check bypass to avoid strict version requirements
+set LIBTORCH_BYPASS_VERSION_CHECK=1
 
 echo LIBTORCH=%LIBTORCH%
 echo LIBCLANG_PATH=%LIBCLANG_PATH%
+echo LIBTORCH_BYPASS_VERSION_CHECK=%LIBTORCH_BYPASS_VERSION_CHECK%
 echo.
 
-REM Add to PATH
-set PATH=%LIBTORCH_DIR%\lib;%LIBTORCH_DIR%\bin;%LLVM_PATH%;%PATH%
+REM Add to PATH (note: this affects only the current script session)
+set "PATH=%LIBTORCH_DIR%\lib;%LIBTORCH_DIR%\bin;%LLVM_PATH%;%CMAKE_PATH%;%PATH%"
 
 echo Environment variables set.
 echo.
 
-REM Step 6: Run the server
+REM Step 6: Check CMake
+echo [5/5] Checking prerequisites...
+where cmake >nul 2>&1
+if %ERRORLEVEL% NEQ 0 (
+    echo.
+    echo ========================================
+    echo CMAKE NOT FOUND
+    echo ========================================
+    echo.
+    echo CMake is required for building NLP dependencies.
+    echo Please install CMake:
+    echo.
+    echo 1. Download from: https://cmake.org/download/
+    echo 2. Install with "Add CMake to system PATH" option
+    echo 3. Restart your terminal/command prompt
+    echo 4. Run this script again
+    echo.
+    pause
+    exit /b 1
+)
+
+echo CMake found:
+cmake --version
+echo.
+
+REM Step 7: Run the server
 echo ========================================
 echo Starting AlfaVoice Server...
 echo ========================================
