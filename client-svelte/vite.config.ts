@@ -12,5 +12,8 @@ export default defineConfig({
 			]
 		}
 	},
-	plugins: [sveltekit()]
+	plugins: [sveltekit()],
+	ssr: {
+		noExternal: ['typesafe-i18n']
+	}
 });

@@ -24,6 +24,7 @@ export function createSettingsStore() {
   let integrationSettings = $state<IntegrationSettings>(DEFAULT_INTEGRATIONS);
   let codeSettings = $state<CodeSettings>(DEFAULT_CODE);
   let isSettingsLoading = $state(true);
+  let locale = $state<'en' | 'ru'>('ru');
 
   // Load settings from localStorage
   const loadSettings = () => {
@@ -37,6 +38,7 @@ export function createSettingsStore() {
         if (parsed.style) styleSettings = parsed.style;
         if (parsed.integrations) integrationSettings = parsed.integrations;
         if (parsed.code) codeSettings = parsed.code;
+        if (parsed.locale) locale = parsed.locale;
       }
     } catch (e) {
       console.error('Failed to load settings:', e);
@@ -71,6 +73,11 @@ export function createSettingsStore() {
     persist('code', settings);
   };
 
+  const setLocale = (newLocale: 'en' | 'ru') => {
+    locale = newLocale;
+    persist('locale', newLocale);
+  };
+
   // Initialize
   if (typeof localStorage !== 'undefined') {
     loadSettings();
@@ -81,9 +88,11 @@ export function createSettingsStore() {
     get integrationSettings() { return integrationSettings; },
     get codeSettings() { return codeSettings; },
     get isSettingsLoading() { return isSettingsLoading; },
+    get locale() { return locale; },
     setStyleSettings,
     setIntegrationSettings,
     setCodeSettings,
+    setLocale,
     loadSettings
   };
 }

@@ -2,6 +2,7 @@
   import { authStore } from '$lib/stores/auth.svelte';
   import { audioStore } from '$lib/stores/audio.svelte';
   import { browser } from '$app/environment';
+  import { t } from '$lib/i18n';
 
   // Audio playback state
   let playingId = $state<number | null>(null);
@@ -21,9 +22,9 @@
     const daysPassed = currentDay === 0 ? 7 : currentDay;
     const daysLeft = 7 - daysPassed;
 
-    let label = 'дней';
-    if (daysLeft === 1) label = 'день';
-    else if (daysLeft > 1 && daysLeft < 5) label = 'дня';
+    let label = t('daysLeft_days');
+    if (daysLeft === 1) label = t('daysLeft_day');
+    else if (daysLeft > 1 && daysLeft < 5) label = t('daysLeft_days2_4');
     
     daysLeftInWeek = { count: daysLeft, label };
 
@@ -112,10 +113,10 @@
   <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
     <div>
       <h1 class="text-3xl font-bold text-text-main dark:text-white tracking-tight mb-1">
-        С возвращением, {authStore.user.firstName}
+        {t('welcomeBack', authStore.user.firstName)}
       </h1>
       <p class="text-text-secondary dark:text-text-dark-secondary text-base">
-        Обзор вашей продуктивности.
+        {t('productivityOverview')}
       </p>
     </div>
     
@@ -123,7 +124,7 @@
     {#if audioStore.isGlobalRecording}
       <div class="flex items-center bg-red-50 dark:bg-red-900/20 px-4 py-2 rounded-lg border border-red-100 dark:border-red-900/50 animate-pulse">
         <div class="w-3 h-3 bg-red-500 rounded-full mr-3"></div>
-        <span class="font-bold text-red-600 dark:text-red-400">Идёт запись...</span>
+        <span class="font-bold text-red-600 dark:text-red-400">{t('recordingInProgress')}</span>
       </div>
     {/if}
 
@@ -140,7 +141,7 @@
         <span class="material-symbols-outlined text-primary mr-2 text-lg">edit_note</span>
         <div class="flex flex-col justify-center">
           <span class="text-base font-bold text-text-main dark:text-gray-200">
-            {stats.words.toLocaleString()} слов
+            {stats.words.toLocaleString()} {t('wordsCount')}
           </span>
         </div>
       </div>
@@ -148,7 +149,7 @@
         <span class="material-symbols-outlined text-primary mr-2 text-lg">speed</span>
         <div class="flex flex-col justify-center">
           <span class="text-base font-bold text-text-main dark:text-gray-200">
-            {stats.wpm} С/М
+            {stats.wpm} {t('wpmLabel')}
           </span>
         </div>
       </div>
@@ -159,18 +160,16 @@
   <div class="bg-white dark:bg-surface-dark rounded-xl p-10 mb-12 border border-gray-200 dark:border-border-dark relative overflow-hidden shadow-card dark:shadow-card-dark group transition-colors duration-200">
     <div class="relative z-10 max-w-3xl">
       <h2 class="text-4xl text-text-main dark:text-gray-100 font-bold mb-4 tracking-tight">
-        Сделайте AlfaVoice похожим на <span class="text-primary italic font-serif">вас</span>
+        {t('personalizeTitle')}
       </h2>
       <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-2xl">
-        AlfaVoice адаптируется к вашему корпоративному тону на всех платформах. Персонализируйте свой стиль письма для 
-        <span class="font-semibold text-text-main dark:text-white">сообщений, писем клиентам и внутренних чатов</span>, 
-        чтобы обеспечить единообразие бренда.
+        {t('personalizeDescription')}
       </p>
       <a
         href="/onboarding"
         class="bg-primary hover:bg-primary-hover text-white px-8 py-3.5 rounded-md text-base font-bold uppercase tracking-wide transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 inline-block"
       >
-        Начать персонализацию
+        {t('startPersonalization')}
       </a>
     </div>
     <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full border-[20px] border-accent-red-light dark:border-gray-800 opacity-50 pointer-events-none group-hover:scale-105 transition-transform duration-700"></div>
@@ -181,7 +180,7 @@
   <div class="mb-12">
     <h3 class="text-xl font-bold text-text-main dark:text-gray-100 mb-5 flex items-center">
       <div class="w-1 h-6 bg-primary mr-3"></div>
-      Интеграции
+      {t('integrations')}
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <a
@@ -193,8 +192,8 @@
           <span class="material-symbols-outlined text-primary dark:text-gray-300 text-3xl group-hover:text-white">code</span>
         </div>
         <div>
-          <span class="text-lg font-bold text-text-main dark:text-gray-200 block mb-1">Разработка</span>
-          <span class="text-sm text-text-secondary dark:text-gray-500">Расширение VS Code</span>
+          <span class="text-lg font-bold text-text-main dark:text-gray-200 block mb-1">{t('development')}</span>
+          <span class="text-sm text-text-secondary dark:text-gray-500">{t('vscodeExtension')}</span>
         </div>
         <span class="material-symbols-outlined ml-auto text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors">arrow_forward</span>
       </a>

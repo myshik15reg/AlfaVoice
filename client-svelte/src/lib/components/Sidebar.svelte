@@ -1,21 +1,23 @@
 <script lang="ts">
   import { page } from '$app/stores';
-
+  import { t } from '$lib/i18n';
+  
   interface Props {
     isCollapsed: boolean;
   }
-
+  
   const { isCollapsed }: Props = $props();
 
   const NAV_ITEMS = [
-    { path: '/dictionary', icon: 'menu_book', label: 'Словарь' },
-    { path: '/snippets', icon: 'content_cut', label: 'Сниппеты' },
-    { path: '/notes', icon: 'note_alt', label: 'Заметки' },
+    { path: '/dictionary', icon: 'menu_book', label: t('dictionary') },
+    { path: '/snippets', icon: 'content_cut', label: t('snippets') },
+    { path: '/notes', icon: 'note_alt', label: t('notes') },
+    { path: '/test-rxdb', icon: 'database', label: 'Test RxDB' },
   ];
-
+  
   const BOTTOM_NAV_ITEMS = [
-    { path: '/settings', icon: 'settings', label: 'Настройки', isSettings: true },
-    { path: '/support', icon: 'help', label: 'Поддержка' },
+    { path: '/settings', icon: 'settings', label: t('settings'), isSettings: true },
+    { path: '/support', icon: 'help', label: t('support') },
   ];
 
   function isActive(path: string, isSettings = false): boolean {
@@ -33,13 +35,13 @@
   <a 
     href="/"
     class="h-20 flex items-center cursor-pointer transition-all duration-300 ease-in-out pl-6"
-    aria-label="На главную"
+    aria-label={t('goToHome')}
   >
     <span class="material-symbols-outlined text-primary text-3xl font-bold flex-shrink-0">graphic_eq</span>
     <span 
       class={`${isCollapsed ? 'max-w-0 opacity-0 ml-0' : 'max-w-[200px] opacity-100 ml-2'} text-2xl font-bold tracking-tight text-text-main dark:text-white whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out`}
     >
-      AlfaVoice
+      {t('appName')}
     </span>
   </a>
 

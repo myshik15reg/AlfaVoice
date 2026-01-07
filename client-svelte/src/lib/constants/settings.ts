@@ -4,10 +4,7 @@ export const SETTINGS_TABS: { id: string; icon: string; label: string }[] = [
   { id: 'devices', icon: 'devices', label: 'Устройства' },
   { id: 'languages', icon: 'language', label: 'Языки и регионы' },
   { id: 'notifications', icon: 'notifications', label: 'Уведомления' },
-  { id: 'privacy', icon: 'lock', label: 'Конфиденциальность' },
-  { id: 'style', icon: 'tune', label: 'Стиль' },
-  { id: 'integrations', icon: 'extension', label: 'Интеграции' },
-  { id: 'code', icon: 'code', label: 'Код' }
+  { id: 'privacy', icon: 'lock', label: 'Конфиденциальность' }
 ];
 
 // Style Settings

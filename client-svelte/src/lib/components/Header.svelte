@@ -1,6 +1,7 @@
 <script lang="ts">
   import { authStore } from '$lib/stores/auth.svelte';
   import { audioStore } from '$lib/stores/audio.svelte';
+  import { t } from '$lib/i18n';
 
   interface Props {
     isDarkMode: boolean;
@@ -29,13 +30,14 @@
 
 <header class="h-16 flex items-center justify-between px-8 border-b border-gray-100 dark:border-border-dark flex-shrink-0 bg-white dark:bg-surface-dark transition-colors duration-200">
   <div class="flex items-center space-x-4 text-gray-400 dark:text-gray-400">
-    <button 
+    <button
       onclick={toggleSidebar}
       class="p-1 rounded-full transition-colors text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-      aria-label="Переключить боковую панель"
+      aria-label={t('toggleSidebar')}
     >
       <span class="material-symbols-outlined text-xl">side_navigation</span>
     </button>
+    
   </div>
   
   <div class="flex items-center space-x-5 text-gray-500 dark:text-gray-400">

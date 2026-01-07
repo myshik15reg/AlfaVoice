@@ -4,7 +4,13 @@
   import Header from '$lib/components/Header.svelte';
   import Sidebar from '$lib/components/Sidebar.svelte';
   import { audioStore } from '$lib/stores/audio.svelte';
+  import { dbStore } from '$lib/stores/db.svelte';
   import type { View } from '$lib/types';
+  import LL from 'typesafe-i18n/svelte';
+  import { loadAllLocales } from '../i18n/i18n-util.sync';
+  
+  // Initialize i18n
+  loadAllLocales();
 
   let { children } = $props();
 
@@ -30,6 +36,8 @@
   
   if (typeof localStorage !== 'undefined') {
     initializeTheme();
+    // Initialize RxDB
+    dbStore.init();
   }
 
   // Toggle theme
