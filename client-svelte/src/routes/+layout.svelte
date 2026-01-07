@@ -98,19 +98,15 @@
 </svelte:head>
 
 <div class="flex h-screen bg-background-light dark:bg-surface-dark text-text-main overflow-hidden">
-  <Sidebar 
-    {currentView} 
-    {setCurrentView} 
-    isCollapsed={isSidebarCollapsed} 
+  <Sidebar
+    isCollapsed={isSidebarCollapsed}
   />
   
   <div class="flex-1 flex flex-col overflow-hidden">
-    <Header 
-      {isDarkMode} 
-      {toggleTheme} 
-      {toggleSidebar} 
-      {setCurrentView} 
-      {currentView} 
+    <Header
+      {isDarkMode}
+      {toggleTheme}
+      {toggleSidebar}
     />
     
     <main class="flex-1 overflow-auto">

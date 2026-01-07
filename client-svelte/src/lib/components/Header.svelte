@@ -1,17 +1,14 @@
 <script lang="ts">
   import { authStore } from '$lib/stores/auth.svelte';
   import { audioStore } from '$lib/stores/audio.svelte';
-  import type { View } from '$lib/types';
 
   interface Props {
     isDarkMode: boolean;
     toggleTheme: () => void;
     toggleSidebar: () => void;
-    setCurrentView: (view: View) => void;
-    currentView: View;
   }
 
-  const { isDarkMode, toggleTheme, toggleSidebar, setCurrentView, currentView }: Props = $props();
+  const { isDarkMode, toggleTheme, toggleSidebar }: Props = $props();
 
   let isNotificationsOpen = $state(false);
   let dropdownRef: HTMLDivElement;
@@ -88,13 +85,13 @@
       {/if}
     </div>
     
-    <button 
-      onclick={() => setCurrentView('settings_general')}
+    <a
+      href="/settings"
       class="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-sm font-bold text-gray-700 dark:text-gray-300 cursor-pointer border border-gray-300 dark:border-gray-600 mr-2 hover:ring-2 hover:ring-primary/20 transition-all"
       aria-label="Настройки"
     >
       {authStore.user.initials}
-    </button>
+    </a>
 
     <div class="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-1"></div>
 

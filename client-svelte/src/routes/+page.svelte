@@ -106,16 +106,6 @@
     authStore.deleteActivity(id);
   }
 
-  // Navigate to integration views (placeholder - will be updated with routing)
-  function navigateToIntegration(type: 'code' | 'chrome') {
-    console.log(`Navigate to integration: ${type}`);
-    // TODO: Implement routing when available
-  }
-
-  function navigateToOnboarding() {
-    console.log('Navigate to onboarding');
-    // TODO: Implement routing when available
-  }
 </script>
 
 <div class="p-8 lg:px-12 lg:py-10">
@@ -176,12 +166,12 @@
         <span class="font-semibold text-text-main dark:text-white">сообщений, писем клиентам и внутренних чатов</span>, 
         чтобы обеспечить единообразие бренда.
       </p>
-      <button 
-        onclick={navigateToOnboarding}
-        class="bg-primary hover:bg-primary-hover text-white px-8 py-3.5 rounded-md text-base font-bold uppercase tracking-wide transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+      <a
+        href="/onboarding"
+        class="bg-primary hover:bg-primary-hover text-white px-8 py-3.5 rounded-md text-base font-bold uppercase tracking-wide transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 inline-block"
       >
         Начать персонализацию
-      </button>
+      </a>
     </div>
     <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full border-[20px] border-accent-red-light dark:border-gray-800 opacity-50 pointer-events-none group-hover:scale-105 transition-transform duration-700"></div>
     <div class="absolute right-32 -bottom-24 w-64 h-64 rounded-full bg-accent-red-light dark:bg-gray-800/50 pointer-events-none"></div>
@@ -194,11 +184,8 @@
       Интеграции
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div
-        onclick={() => navigateToIntegration('code')}
-        onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigateToIntegration('code'); } }}
-        role="button"
-        tabindex="0"
+      <a
+        href="/integration/code"
         class="bg-white dark:bg-surface-dark rounded-lg border border-gray-200 dark:border-border-dark hover:border-primary/50 dark:hover:border-primary/50 hover:shadow-card dark:hover:shadow-card-dark transition-all cursor-pointer p-6 flex items-center h-32 group relative overflow-hidden"
       >
         <div class="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-gray-50 to-transparent dark:from-white/5 transition-opacity opacity-0 group-hover:opacity-100"></div>
@@ -210,12 +197,9 @@
           <span class="text-sm text-text-secondary dark:text-gray-500">Расширение VS Code</span>
         </div>
         <span class="material-symbols-outlined ml-auto text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors">arrow_forward</span>
-      </div>
-      <div
-        onclick={() => navigateToIntegration('chrome')}
-        onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigateToIntegration('chrome'); } }}
-        role="button"
-        tabindex="0"
+      </a>
+      <a
+        href="/integration/chrome"
         class="bg-white dark:bg-surface-dark rounded-lg border border-gray-200 dark:border-border-dark hover:border-primary/50 dark:hover:border-primary/50 hover:shadow-card dark:hover:shadow-card-dark transition-all cursor-pointer p-6 flex items-center h-32 group relative overflow-hidden"
       >
         <div class="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-gray-50 to-transparent dark:from-white/5 transition-opacity opacity-0 group-hover:opacity-100"></div>
@@ -227,7 +211,7 @@
           <span class="text-sm text-text-secondary dark:text-gray-500">Интеграция с Chrome</span>
         </div>
         <span class="material-symbols-outlined ml-auto text-gray-300 dark:text-gray-600 group-hover:text-primary transition-colors">arrow_forward</span>
-      </div>
+      </a>
     </div>
   </div>
 
